@@ -19,60 +19,71 @@
       background-color: #2F2F30
     }
 
-    table {
-      text-align: center;
+    #wrap {
+      display: table; 
+      margin: auto;
+      margin-top:10px;
     }
 
     #reset {
       width: 100%;
     }
+
+    table {
+      text-align: center;
+    }
+	
+    td:hover {
+      outline: 1px solid #007bff;
+    }
+
   </style>
 </head>
 
 <body>
-  <div style="display: table; margin: 10px;">
-    <button id="reset" class="btn btn-primary">Reset</button><br></br>
+  <div id="wrap">
+    <button id="reset" class="btn btn-primary">Reset</button><br><br>
 
     <table>
       <tbody>
         <tr>
-          <th class="phase1">Pattern 1</th>
-          <th class="phase2">Pattern 2</th>
-          <th class="phase3">Pattern 3</th>
-          <th class="phase4">Pattern 4</th>
+          <th class="pattern1">Pattern 1</th>
+          <th class="pattern2">Pattern 2</th>
+          <th class="pattern3">Pattern 3</th>
+          <th class="pattern4">Pattern 4</th>
         </tr>
         <tr>
-          <td class="phase1"><img src="https://i.imgur.com/YIoY1Fb.png" /></td>
-          <td class="phase2"><img src="https://i.imgur.com/0wIj06A.png" /></td>
-          <td class="phase3"><img src="https://i.imgur.com/2M8cTew.png" /></td>
-          <td class="phase4"><img src="https://i.imgur.com/jwH6Vlg.png" /></td>
+          <td class="pattern1"><img src="images/pattern1.png" /></td>
+          <td class="pattern2"><img src="images/pattern2.png" /></td>
+          <td class="pattern3"><img src="images/pattern3.png" /></td>
+          <td class="pattern4"><img src="images/pattern4.png" /></td>
         </tr>
       </tbody>
     </table>
   </div>
   <script>
-    document.querySelector("td.phase1").addEventListener("click", () => {
-      hidePhase(2);
-      hidePhase(3);
-      hidePhase(4);
+    document.querySelector("td.pattern1").addEventListener("click", () => {
+      hidePattern(2);
+      hidePattern(3);
+      hidePattern(4);
     });
 
-    document.querySelector("td.phase2").addEventListener("click", () => {
-      hidePhase(1);
-      hidePhase(3);
-      hidePhase(4);
+    document.querySelector("td.pattern2").addEventListener("click", () => {
+      hidePattern(1);
+      hidePattern(3);
+      hidePattern(4);
     });
 
-    document.querySelector("td.phase3").addEventListener("click", () => {
-      hidePhase(1);
-      hidePhase(2);
-      hidePhase(4);
+    document.querySelector("td.pattern3").addEventListener("click", () => {
+      hidePattern(1);
+      hidePattern(2);
+      hidePattern(4);
     });
 
-    document.querySelector("td.phase4").addEventListener("click", () => {
-      hidePhase(1);
-      hidePhase(2);
-      hidePhase(3);
+    document.querySelector("td.pattern4").addEventListener("click", () => {
+      hidePattern(1);
+      hidePattern(2);
+      hidePattern(3);
     });
 
     document.querySelector("#reset").addEventListener("click", () => {
@@ -81,9 +92,8 @@
       })
     })
 
-    hidePhase = (n) => {
-      let phase = ".phase" + n
-      document.querySelectorAll(phase).forEach((ele) => {
+    hidePattern = (n) => {
+      document.querySelectorAll(`.pattern${n}`).forEach((ele) => {
         ele.classList.add("hide")
       })
     }
