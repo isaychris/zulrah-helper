@@ -5,7 +5,7 @@
 
 <head>
   <title>Zulrah Helper</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="height=device-height, initial-scale=1, shrink-to-fit=yes">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
   <style>
@@ -22,7 +22,7 @@
     #wrap {
       display: table; 
       margin: auto;
-      margin-top:10px;
+      padding:10px;
     }
 
     #reset {
@@ -35,6 +35,11 @@
 	
     td:hover {
       outline: 1px solid #007bff;
+      cursor: pointer;
+    }
+
+    img {
+      display:block;
     }
 
   </style>
@@ -43,60 +48,32 @@
 <body>
   <div id="wrap">
     <button id="reset" class="btn btn-primary">Reset</button><br><br>
-
     <table>
-      <tbody>
         <tr>
-          <th class="pattern1">Pattern 1</th>
-          <th class="pattern2">Pattern 2</th>
-          <th class="pattern3">Pattern 3</th>
-          <th class="pattern4">Pattern 4</th>
-        </tr>
-        <tr>
-          <td class="pattern1"><img src="images/pattern1.png" /></td>
-          <td class="pattern2"><img src="images/pattern2.png" /></td>
-          <td class="pattern3"><img src="images/pattern3.png" /></td>
-          <td class="pattern4"><img src="images/pattern4.png" /></td>
+          <td class="pattern"> Pattern 1 <img src="images/pattern1.png" draggable="false" /></td>
+          <td class="pattern"> Pattern 2 <img src="images/pattern2.png" draggable="false" /></td>
+          <td class="pattern"> Pattern 3 <img src="images/pattern3.png" draggable="false" /></td>
+          <td class="pattern"> Pattern 4 <img src="images/pattern4.png" draggable="false" /></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <script>
-    document.querySelector("td.pattern1").addEventListener("click", () => {
-      hidePattern(2);
-      hidePattern(3);
-      hidePattern(4);
-    });
 
-    document.querySelector("td.pattern2").addEventListener("click", () => {
-      hidePattern(1);
-      hidePattern(3);
-      hidePattern(4);
-    });
-
-    document.querySelector("td.pattern3").addEventListener("click", () => {
-      hidePattern(1);
-      hidePattern(2);
-      hidePattern(4);
-    });
-
-    document.querySelector("td.pattern4").addEventListener("click", () => {
-      hidePattern(1);
-      hidePattern(2);
-      hidePattern(3);
-    });
+  <script>      
+    document.querySelector("tr").addEventListener("click", (e) => {      
+      if(e.target.tagName.toLowerCase() === 'img') {
+        for(ele of document.querySelectorAll("img")) {
+          if(ele != e.target)
+            ele.parentElement.classList.add("hide")
+          }
+      }
+    })
 
     document.querySelector("#reset").addEventListener("click", () => {
       document.querySelectorAll(".hide").forEach((ele) => {
         ele.classList.remove("hide")
       })
     })
-
-    hidePattern = (n) => {
-      document.querySelectorAll(`.pattern${n}`).forEach((ele) => {
-        ele.classList.add("hide")
-      })
-    }
   </script>
 </body>
 
